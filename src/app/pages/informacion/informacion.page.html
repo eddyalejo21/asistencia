@@ -1,0 +1,36 @@
+<app-header></app-header>
+<ion-content>
+
+  <ion-refresher 
+    slot="fixed"
+    (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+    pullingIcon="arrow-down"
+    pullingText="Deslice para consultar"
+    refreshingSpinner= "dots">
+  </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-list-header class="ion-text-center" style="color: #0055a4;">
+      <ion-label>Registro de Timbradas</ion-label>
+      
+    </ion-list-header>
+ 
+    <ion-item *ngFor="let item of asistencias">
+      <ion-label>
+        <p *ngIf="item.tipo==='I'" class="entrada">Entrada</p>
+        <h3 *ngIf="item.tipo==='O'" class="salida">Salida</h3>
+        <p>{{item.fecha}}</p>
+      </ion-label>
+      <ion-icon slot="end" src="/assets/svg/in.svg" *ngIf="item.tipo==='I'"></ion-icon>
+      <ion-icon slot="end" src="/assets/svg/out.svg" *ngIf="item.tipo==='O'" ></ion-icon>
+      <!-- <ion-avatar slot="end" *ngIf="item.tipo==='I'">
+        <img src="/assets/avatars/{{usuario.avatar}}">
+      </ion-avatar>
+      <ion-avatar slot="end" *ngIf="item.tipo==='O'">
+        <img src="/assets/avatars/man.png">
+      </ion-avatar> -->
+    </ion-item>
+  </ion-list>
+</ion-content>

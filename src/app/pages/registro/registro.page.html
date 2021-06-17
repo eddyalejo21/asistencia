@@ -1,0 +1,49 @@
+<app-header title="Registro" [avatar]="user.avatar"></app-header>
+<ion-content >
+    <div class="row" > 
+        <ion-text *ngIf="iniciado" class="ion-text-center labelInicio">
+            <h4>Inició Jornada {{inicioDate | date: 'dd MMMM yyyy': 'medium' :'es-EC' | titlecase}}</h4>          
+        </ion-text>
+        <ion-progress-bar type="indeterminate" reversed="true" *ngIf="registrando"></ion-progress-bar>
+
+    </div>
+    <ion-card mode="ios" class="marginCard">
+        
+        <ion-card-header>
+            <img src="/assets/avatars/{{user.avatar}}"
+             class="Empimage">
+           
+          <ion-card-title class="ion-text-center">
+                {{ user.nombre | titlecase}}
+                     </ion-card-title>
+        </ion-card-header>
+        <ion-card-content >
+            <ion-button (click)="iniciar()"  color="primary"
+            expand="full" shape="round"
+            *ngIf="!iniciado">
+                Iniciar labores
+                
+            </ion-button>
+            
+            <ion-button (click)="salirBreak()"  color="warning"
+            expand="full"  shape="round"
+                *ngIf="iniciadoAlm">
+                Salir a almuerzo
+            </ion-button>
+            <ion-button (click)="reanudar()"  color="warning"
+            expand="full"  shape="round"
+                *ngIf="iniciadoRean">
+                Retornar de almuerzo
+            </ion-button>
+             <ion-button (click)="showAlert()"  color="redEpmmop"
+            expand="full" fill="outline" shape="round"
+                *ngIf="iniciado">
+                Finalizar jornada
+            </ion-button> 
+            
+        </ion-card-content>
+      </ion-card>
+
+</ion-content>
+
+

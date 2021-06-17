@@ -1,0 +1,46 @@
+<app-header></app-header>
+
+<ion-content class="ion-padding">
+  <div style="text-align: center;">
+    <img [src]="iconSrc" class="iconPass">
+  </div>
+  <div style="background: #1abc9c">
+    <h5 class="center">Ingrese el código enviado a su correo electrónico.</h5>
+
+  </div>
+
+  <form (ngSubmit) ="reset( fRegistro )" #fRegistro="ngForm">
+  <ion-item>
+    <ion-label position="floating" color="epmmop"><strong>CÓDIGO:</strong></ion-label>
+    <ion-input type="text" required [(ngModel)]="codigo" name="cod" 
+    style="color: dodgerblue; font-size: larger; text-align: center;" maxlength="5"></ion-input>
+  </ion-item> 
+  
+
+  <ion-item class="ion-padding">
+    <ion-label position="floating" color="epmmop"><strong>NUEVA CLAVE:</strong></ion-label>
+    <ion-input [type]="showPassword ? 'text': 'password'" required 
+              [(ngModel)]="clave" 
+              name="clave" 
+              minlength="8" 
+              maxlength="25">
+    </ion-input>
+    <ion-icon slot="end" [name]="icon" (click)="show()"></ion-icon>
+  </ion-item>
+
+  <ion-item class="ion-padding">
+    <ion-label position="floating" color="epmmop"><strong>REPITA LA CLAVE:</strong></ion-label>
+    <ion-input [type]="showPassword ? 'text': 'password'" required  minlength="8"
+    [(ngModel)]="clave2" name="clave2" debounce="400">
+    </ion-input>
+    <ion-icon slot="end" [name]="icon" (click)="show()"></ion-icon>
+  </ion-item>
+
+  <ion-button expand="block" 
+              [disabled]="fRegistro.invalid" 
+              shape="round" 
+              type="submit">
+    Enviar
+  </ion-button>
+</form>
+</ion-content>

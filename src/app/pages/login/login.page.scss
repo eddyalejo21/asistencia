@@ -1,0 +1,34 @@
+
+.logoImg {
+    width: 65%;
+    text-align: center;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    position: relative;
+    
+}
+
+.mainSlide, .mainSlide ion-slide {
+    width: 100%;
+    height: 100%;
+}
+
+img {
+    width: 120px;
+}
+
+.avatar{
+    margin-top: 40px;
+}
+
+.recpass{
+    color: blue;
+    font-size: small;
+}
+
+.err{
+    color: red;
+}

@@ -1,0 +1,166 @@
+<ion-content class="ion-padding">
+
+  <ion-slides class="mainSlide" #slidePrincipal>
+
+    <ion-slide>
+      <form (ngSubmit)="send()" #formulario="ngForm" >
+     <!-- class="loginPadd" -->
+
+          <img src="/assets/logos/epmmop.png" class="logoImg">
+          <ion-row class="avatar">
+            <ion-col>
+              <img src="/assets/avatars/av-1.png">
+            </ion-col>
+          </ion-row>
+
+          <ion-item class="ion-padding">
+            <ion-label position="floating" color="epmmop"><strong>CÉDULA</strong></ion-label>
+            <ion-input type="text" inputmode="numeric" required="required" maxlength=10 [(ngModel)]="user.cedula"
+              pattern="^([0-9]+$)" onkeypress="return  valida(event)" name="cedula"></ion-input>
+          </ion-item>
+          <ion-item class="ion-padding">
+            <ion-label position="floating" color="epmmop"><strong>CLAVE</strong></ion-label>
+            <ion-input type="password" required="required"
+             [(ngModel)]="user.clave" name="clave">
+            </ion-input>
+          </ion-item>
+
+          <ion-button type="submit" 
+                      shape="round"
+                      color="primary" 
+                      expand="full"
+                      [disabled]="formulario.invalid">
+                Iniciar Sesión
+          </ion-button>
+
+          <div>
+            <ion-button shape="round" 
+                        color="warning"
+                        expand="full"
+                        (click)="mostrarRegistro()">
+              Registrarme
+            </ion-button>
+          </div>
+       
+            <div>
+              <ion-label class="recpass" (click)="reset()">
+                ¿Olvidó su Contraseña?
+              </ion-label>
+            </div>
+
+            <ion-row>
+  
+              <ion-col>
+               
+              </ion-col>
+        
+            </ion-row>
+            
+
+      </form>
+
+      
+    </ion-slide>
+
+    <!-- PANTALLA DE REGISTRO -->
+    <ion-slide>
+      <ion-grid fixed>
+
+        <app-avatar-selector 
+            (avatarSeleccionado)="avatar = $event">
+          </app-avatar-selector>
+        
+            <form (ngSubmit) ="registrar( fRegistro )" #fRegistro="ngForm">
+                <ion-row>
+                    <ion-col>
+                        
+                        <ion-list>
+                            
+                          <ion-item>
+                            <ion-label position="floating" color="epmmop"><strong>CÉDULA: </strong></ion-label>
+                            <ion-input name="cedula" 
+                            inputmode="numeric"
+                            maxlength= 10
+                                        type="text"
+                                        [(ngModel)] = "inputCedula"
+                                        required
+                                        debounce= 2000
+                                        onkeypress="return  valida(event)"
+                                        (ionChange)= "consultarCedula()"></ion-input>
+                            </ion-item>
+
+                            <ion-item *ngIf="registerUser.email">
+                            <ion-label position="stacked"><strong>E-MAIL: </strong></ion-label>
+                            <ion-input name="email" 
+                            
+                                        type="email"
+                                        [ngModel] = "registerUser.email"
+                                        readonly></ion-input>
+                            </ion-item>
+
+                            <ion-item *ngIf="registerUser.nombre">
+                            <ion-label position="stacked"><strong>NOMBRE: </strong> </ion-label>
+                            <ion-input name="nombre"
+                                        required= "true"
+                                        type="text"
+                                        style="font-size: small;" 
+                                        [ngModel] = "registerUser.nombre"
+                                        readonly></ion-input>
+                            </ion-item>
+
+                            <ion-item>
+                            <ion-label position="floating" color="epmmop"><strong>CLAVE: (Mínimo 8 caracteres)</strong></ion-label>
+                            <ion-input name="password"
+                                        type="password"
+                                        minlength=8
+                                        maxlength=25
+                                        [(ngModel)] = "registerUser.clave"
+                                        required></ion-input>
+                            </ion-item>
+
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
+                <br>
+                <ion-row>
+                <ion-col>
+                    <ion-button type="submit"
+                                color="success"
+                                shape="round"
+                                expand="full"
+                                [disabled]="fRegistro.invalid">
+                        Crear usuario
+                    </ion-button>
+
+                    <ion-button shape="round"
+                                expand="full"  
+                                color="epmmop" 
+                                (click)="mostrarLogin()" >
+                        Regresar a inicio de sesión
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            
+            </form>
+        </ion-grid>
+  
+  
+      </ion-slide>
+  </ion-slides>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+
+    <ion-row>
+
+      <ion-col>
+        
+      </ion-col>
+
+    </ion-row>
+
+  </ion-toolbar>
+</ion-footer>
+
